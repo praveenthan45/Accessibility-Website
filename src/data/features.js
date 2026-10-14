@@ -1,5 +1,8 @@
+import { additionalFeatures } from './additionalFeatures';
+import { featureCategories } from './featureCategories';
+import catalog from './accessibility-settings.json';
 import { AArrowUp, AArrowDown, Contrast, Moon, Sun, Palette, Eye, AlignHorizontalSpaceAround, ZoomIn, Link2, Type, ScanLine, Rows3 } from 'lucide-react';
-export const features = [
+const originalFeatures = [
   { id: 'increase-text', title: 'Increase Text Size', icon: AArrowUp, category: 'Visual Customization', description: 'Give words a little more room to be seen.', detail: 'Increase the sample’s text in small increments. Larger text can make reading more comfortable; your browser’s own zoom remains useful for the whole page.', tag: 'A clearer view' },
   { id: 'decrease-text', title: 'Decrease Text Size', icon: AArrowDown, category: 'Visual Customization', description: 'Find the text size that feels right for you.', detail: 'Reduce text from an enlarged setting or choose a smaller view within the demo’s supported range. Start with a readable size and adjust gradually.' },
   { id: 'high-contrast', title: 'High Contrast Mode', icon: Contrast, category: 'Visual Customization', description: 'Create stronger separation between text and background.', detail: 'Try a high contrast black-and-white treatment in the preview. This is an individual preference and does not repair the accessibility of an underlying website.' },
@@ -14,4 +17,12 @@ export const features = [
   { id: 'reading-guide', title: 'Reading Guide', icon: ScanLine, category: 'Reading Assistance', description: 'Keep your place, one line at a time.', detail: 'Use a horizontal guide over the sample. A labeled position slider moves the guide with the keyboard, touch or a pointer.' },
   { id: 'reading-mask', title: 'Reading Mask', icon: Rows3, category: 'Reading Assistance', description: 'Focus on one area with fewer distractions.', detail: 'Dim the sample outside a horizontal reading window. Move the window using the position slider. This is a visual effect and does not hide text from assistive technology.' },
 ];
-export const categories = ['Visual Customization', 'Reading Assistance', 'Comfort and Navigation'];
+
+export const features = catalog.map(setting => {
+  const original = originalFeatures.find(feature => feature.title === setting.title);
+  const content = original || additionalFeatures[setting.title];
+  if (!content) throw new Error(`Missing feature content: ${setting.title}`);
+  return { ...content, ...setting, status: content.status || 'sample' };
+});
+export const categories = featureCategories.map(category => category.title);
+export const featuredFeatures = features.filter(feature => feature.number <= 13);

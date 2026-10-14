@@ -10,7 +10,7 @@ export function Steps({ detailed = false }) {
   const steps = [
     { icon: MousePointer2, title: 'Discover AccesseEase', description: 'Explore practical tools for the way you browse, read and interact.', detail: 'Start with the interactive sample. There is no account or installation needed to try this website’s demo.' },
     { icon: SlidersHorizontal, title: 'Choose Your Preferences', description: 'Make small adjustments. Find a combination that feels like you.', detail: 'Choose a theme, adjust text and spacing, or try a reading guide. Controls have descriptive labels and work with a keyboard.' },
-    { icon: Sparkles, title: 'Enjoy a More Comfortable Experience', description: 'Read with more clarity, focus and comfort—on your own terms.', detail: 'Compare the sample, adjust again when needed and reset with one button. Preferences affect the preview only and do not persist after you leave.' },
+    { icon: Sparkles, title: 'Enjoy a More Comfortable Experience', description: 'Read with more clarity, focus and comfort—on your own terms.', detail: 'Compare the sample, adjust again when needed and reset with one button. Preferences affect the preview only. You may explicitly save them in this browser from the Personalization sample.' },
   ];
   return <div className={`steps-grid ${detailed ? 'steps-detailed' : ''}`}>{steps.map((s, i) => <article key={s.title} className="step"><div className="step-top"><span className="step-icon"><s.icon size={30} aria-hidden="true"/></span><span className="step-number">0{i + 1}</span>{i < 2 && <ArrowUpRight className="step-arrow" size={20} aria-hidden="true"/>}</div><h3>{s.title}</h3><p>{s.description}</p>{detailed && <p className="step-detail">{s.detail}</p>}</article>)}</div>;
 }
