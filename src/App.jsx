@@ -15,16 +15,16 @@ import { metadata, site } from './config/site';
 function RouteEffects() {
   const { pathname, hash } = useLocation(); const first = useRef(true); const previous = useRef(pathname);
   useLayoutEffect(() => {
-    const [title, description] = metadata[pathname] || ['Page not found', 'Find your way back to AccesseEase.'];
-    document.title = `${title} | AccesseEase`;
+    const [title, description] = metadata[pathname] || ['Page not found', 'Find your way back to A11yEase.'];
+    document.title = `${title} | A11yEase`;
     const setMeta = (selector, content) => document.querySelector(selector)?.setAttribute('content', content);
-    setMeta('meta[name="description"]', description); setMeta('meta[property="og:title"]', `${title} | AccesseEase`); setMeta('meta[property="og:description"]', description);
+    setMeta('meta[name="description"]', description); setMeta('meta[property="og:title"]', `${title} | A11yEase`); setMeta('meta[property="og:description"]', description);
     if (site.url) {
       let canonical = document.querySelector('link[rel="canonical"]'); if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.append(canonical); } canonical.href = `${site.url}${pathname}`;
       let ogUrl = document.querySelector('meta[property="og:url"]'); if (!ogUrl) { ogUrl = document.createElement('meta'); ogUrl.setAttribute('property', 'og:url'); document.head.append(ogUrl); } ogUrl.content = `${site.url}${pathname}`;
       setMeta('meta[property="og:image"]', `${site.url}/share-preview.png`);
     }
-    if (hash) { requestAnimationFrame(() => { const target = document.getElementById(decodeURIComponent(hash.slice(1))); target?.scrollIntoView({ behavior: 'instant', block: 'start' }); if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); } }); }
+    if (hash) { requestAnimationFrame(() => { const target = document.getElementById(decodeURIComponent(hash.slice(1))); target?.scrollIntoView({ behavior: 'instant', block: 'start' }); if (target) { if (!target.matches('a[href],button,input,select,textarea,[tabindex]')) target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); } }); }
     else { window.scrollTo({ top: 0, behavior: 'instant' }); if (!first.current && previous.current !== pathname) document.getElementById('main-content')?.focus({ preventScroll: true }); }
     previous.current = pathname; first.current = false;
   }, [pathname, hash]);

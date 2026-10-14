@@ -2,7 +2,7 @@ import { useId, useRef, useState } from 'react';
 import { Minus, Plus, Moon, Sun, Contrast, AlignHorizontalSpaceAround, Link2, ScanLine, Rows3, RotateCcw, ChevronDown, Palette, Type, ZoomIn, Eye, ArrowUpRight, Check } from 'lucide-react';
 import CategorySamples from './CategorySamples';
 import LogoMark from './LogoMark';
-import { defaultSettings as defaults, preferenceKey, readPreferences } from '../data/demoSettings';
+import { defaultSettings as defaults, preferenceKey, legacyPreferenceKey, readPreferences } from '../data/demoSettings';
 export default function AccessibilityDemo({ category }) {
   const [settings, setSettings] = useState(readPreferences);
   const [preferenceStatus,setPreferenceStatus]=useState('');const preview=useRef(null);const sizeControl=useRef(null);
@@ -10,7 +10,7 @@ export default function AccessibilityDemo({ category }) {
   const update = (key, value, label) => { setSettings(s => ({ ...s, [key]: value })); setAnnouncement(`${label}: ${typeof value === 'boolean' ? (value ? 'on' : 'off') : value}.`); };
   const toggle = (key, label) => update(key, !settings[key], label);
   const savePreferences=()=>{try{window.localStorage.setItem(preferenceKey,JSON.stringify(settings));setPreferenceStatus('The main sample preferences are saved in this browser.');}catch{setPreferenceStatus('Preferences could not be saved. Browser storage may be restricted.');}};
-  const resetPreferences=()=>{setSettings({...defaults});setAnnouncement('All sample settings reset to defaults.');try{window.localStorage.removeItem(preferenceKey);setPreferenceStatus('Defaults restored and saved preferences cleared.');}catch{setPreferenceStatus('Defaults restored. Browser storage prevented clearing saved preferences.');}};
+  const resetPreferences=()=>{setSettings({...defaults});setAnnouncement('All sample settings reset to defaults.');try{window.localStorage.removeItem(preferenceKey);window.localStorage.removeItem(legacyPreferenceKey);setPreferenceStatus('Defaults restored and saved preferences cleared.');}catch{setPreferenceStatus('Defaults restored. Browser storage prevented clearing saved preferences.');}};
   const control = (Icon, label, key) => <button className={`demo-control ${settings[key] ? 'selected' : ''}`} aria-pressed={settings[key]} onClick={() => toggle(key, label)} key={key}><Icon size={18} aria-hidden="true"/><span>{label}</span><span className="toggle-switch" aria-hidden="true"><i/></span></button>;
   const previewClass = `demo-preview theme-${settings.theme} ${settings.spacing ? 'spaced' : ''} ${settings.links || settings.colorCues ? 'highlight-links' : ''} ${settings.grayscale ? 'grayscale' : ''} ${settings.font ? 'reading-font' : ''} ${settings.zoom ? 'sample-zoom' : ''} ${settings.paragraphs?'highlight-paragraphs':''}`;
   return <div className="demo-wrapper">
@@ -37,7 +37,7 @@ export default function AccessibilityDemo({ category }) {
           <button className="more-settings" aria-expanded={more} aria-controls={`${id}-more`} onClick={() => setMore(!more)}>More settings <ChevronDown size={16} className={more ? 'rotate' : ''} aria-hidden="true"/></button>
           <div id={`${id}-more`} hidden={!more} className="demo-controls advanced-controls">{control(Palette, 'Grayscale', 'grayscale')}{control(Type, 'Dyslexia-friendly font', 'font')}{control(ZoomIn, 'Magnifier / Zoom', 'zoom')}{control(Eye, 'Color vision cues', 'colorCues')}</div>
           <button className="demo-reset" onClick={resetPreferences}><RotateCcw size={15} aria-hidden="true"/> Reset Settings</button>
-          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/> Powered by AccesseEase</p>
+          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/> Powered by A11yEase</p>
         </aside>
       </div>
     </div>

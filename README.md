@@ -1,4 +1,4 @@
-# AccesseEase
+# A11yEase
 
 A complete React marketing website with eight routes, a branded 404, an isolated interactive accessibility demo and a reusable configurable contact form.
 
@@ -49,7 +49,7 @@ The controlled form POSTs JSON with these keys:
   "message": "Please tell me about the product demonstration.",
   "consent": true,
   "website": "",
-  "source": "accessease-contact",
+  "source": "a11yease-contact",
   "formDurationMs": 10000
 }
 ```
@@ -80,16 +80,24 @@ See `ASSETS.md` for third-party image, font and package references.
 
 The category catalog is transcribed from `53 Accessibility Settings - Category Wise.xlsx`. The workbook contains 52 filled settings across 9 categories; serial number 30 is blank and is not invented. The workbook is read only and is not modified. `src/data/accessibility-settings.json` preserves its setting names, categories and source serial numbers. Descriptions, implementation status and category visuals are authored separately.
 
-The Features page includes search, category filtering, all listed settings and category-specific illustrations. The home page retains its original visual feature highlights and adds the nine-category overview. Category samples cover keyboard controls, a supplied caption sequence and transcript, visual notifications, guided reading, motion controls, semantic markup, a local validation form and a confirmation dialog. Speech playback uses browser speech synthesis when available. Voice commands, live captions, flashing-content detection and real authentication remain clearly marked as requiring integration. Hardware/assistive-technology compatibility is not asserted by a visual sample.
+The Features page includes search, category filtering and all listed settings beside their controls and live samples. The home page retains its visual feature highlights and nine-category overview. Examples cover keyboard controls, a supplied caption sequence and transcript, visual notifications, guided reading, motion controls, semantic markup, local form validation and confirmation. Speech playback and microphone recognition use available browser APIs. The media guard and sign-in remain explicitly scoped local demonstrations. Hardware/assistive-technology compatibility is not asserted by a visual sample.
 
-Choose Save preferences explicitly to store the main sample settings under `accessease-demo-preferences-v1` in local storage. Stored values are allowlisted and validated when loaded. Separate category examples do not persist. Reset removes the saved main-panel preferences. Privacy and FAQ copy describe this behavior.
+Choose Save preferences explicitly to store the main sample settings under `a11yease-demo-preferences-v1` (with read-only continuity for the former brand key) in local storage. Stored values are allowlisted and validated when loaded. Separate category examples do not persist. Reset removes the saved main-panel preferences. Privacy and FAQ copy describe this behavior.
 
 Run `npm run verify:categories` with the local preview running to verify catalog reconciliation, search/filter behavior, all nine category samples, saved preferences, modal keyboard behavior, responsive layouts and automated accessibility checks. Speech wiring is tested with an injected browser speech fixture; available operating-system voices still require environment-specific testing.
 
 ## Feature stories and motion checks
 
-All 52 catalog settings have authored context examples in `src/data/featureExamples.js`. Integration and compatibility review entries describe what still needs verification. The home page adds three interactive feature stories with a default/adjusted comparison. Five page-specific CTA compositions use native HTML/CSS instead of repeated decorative imagery.
+All 52 catalog settings have authored context examples in `src/data/featureExamples.js`. Browser, device and local-sample labels describe the scope of each demonstration. The home page adds three interactive feature stories with a default/adjusted comparison. Five page-specific CTA compositions use native HTML/CSS instead of repeated decorative imagery.
 
 Card entrances run once as they enter view; hover movement is limited to fine pointers. Focused content appears immediately, and system reduced-motion preferences suppress these effects, including when changed during a visit.
 
-With the dev server running, `npm run verify:polish` checks the new comparisons, keyboard paths, focus visibility, reduced motion, dynamically inserted search cards and CTA reflow. Set `QA_BASE_URL` when the server uses a port other than 5173.
+With the dev server running, `npm run verify:polish` checks the new comparisons, keyboard paths, focus visibility, reduced motion and CTA reflow. Set `QA_BASE_URL` when the server uses a port other than 5173.
+
+## Side-by-side feature workspace
+
+The Features route now lists the 52 named workbook settings beside a selected control and live sample. The workbook serial numbers are preserved, including the gap at 30. Visual/reading samples share configurable React state; keyboard scanning, sequential modifiers, caption sequences, guided steps, semantic inspection, local form feedback, sign-in simulation, confirmation, browser storage and profiles have interactive examples.
+
+Voice commands and microphone captions use a supported browser’s SpeechRecognition API, ask for microphone permission on Start, and stop on unmount. A labeled manual text path remains available. The browser provider may process audio remotely; consult [MDN’s SpeechRecognition documentation](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition). No browser speech or physical-device compatibility guarantee is made. The media guard handles a known contained request and never generates flashing media. The local sign-in uses displayed sample credentials and is not production authentication.
+
+Workspace settings use `a11yease-feature-demo-v1`. Form values and microphone state are never saved. Run `npm run verify:workbench` for the 52-setting interaction and accessibility suite.

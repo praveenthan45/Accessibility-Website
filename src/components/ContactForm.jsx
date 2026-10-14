@@ -28,7 +28,7 @@ export default function ContactForm() {
     lastAttempt.current = Date.now(); setStatus({ type: 'loading', message: 'Sending your message…' });
     const controller = new AbortController(); const timeout = window.setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch(site.contactEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, fullName: values.fullName.trim(), email: values.email.trim(), subject: values.subject.trim(), message: values.message.trim(), organization: values.organization.trim(), source: 'accessease-contact', formDurationMs: Date.now() - started.current }), signal: controller.signal });
+      const response = await fetch(site.contactEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...values, fullName: values.fullName.trim(), email: values.email.trim(), subject: values.subject.trim(), message: values.message.trim(), organization: values.organization.trim(), source: 'a11yease-contact', formDurationMs: Date.now() - started.current }), signal: controller.signal });
       if (!response.ok) throw new Error(response.status === 429 ? 'rate-limit' : 'failed');
       setStatus({ type: 'success', message: 'Your message was accepted by the contact service. Thank you for reaching out.' }); setValues(empty); started.current = Date.now();
     } catch (error) { setStatus({ type: 'error', message: error.message === 'rate-limit' ? 'Too many requests. Please try again later.' : 'Your message could not be sent. Your details are still here; please try again later.' }); }

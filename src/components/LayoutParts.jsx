@@ -8,11 +8,11 @@ export function PageHero({ eyebrow, title, accent, description, children }) { re
 export function ConversionCTA({ title = 'A More Accessible Digital Experience Starts Here.', description = 'Discover accessibility controls designed around your preferences.', contact = false }) {
   const { pathname } = useLocation();
   const variant = ({ '/features':'compare', '/how-it-works':'workflow', '/about':'mission', '/faq':'support' })[pathname] || 'reading';
-  return <section className={`conversion conversion--${variant}`}><div className="container conversion-inner"><div><Eyebrow light>YOUR DIGITAL WORLD. YOUR WAY.</Eyebrow><h2>{title}</h2><p>{description}</p><div className="button-row"><Button to={contact ? '/contact' : '/#demo'} variant="white">{contact ? 'Contact Our Team' : 'Get Started'}</Button>{!contact && <Button to="/contact" variant="dark-outline">Contact Our Team</Button>}</div></div><ConversionVisual variant={variant}/></div></section>;
+  return <section className={`conversion conversion--${variant}`}><div className="container conversion-inner"><div><Eyebrow light>YOUR DIGITAL WORLD. YOUR WAY.</Eyebrow><h2>{title}</h2><p>{description}</p><div className="button-row"><Button to={contact ? '/contact' : '/features#feature-workbench'} variant="white">{contact ? 'Contact Our Team' : 'Get Started'}</Button>{!contact && <Button to="/contact" variant="dark-outline">Contact Our Team</Button>}</div></div><ConversionVisual variant={variant}/></div></section>;
 }
 export function Steps({ detailed = false }) {
   const steps = [
-    { icon: MousePointer2, title: 'Discover AccesseEase', description: 'Explore practical tools for the way you browse, read and interact.', detail: 'Start with the interactive sample. There is no account or installation needed to try this website’s demo.' },
+    { icon: MousePointer2, title: 'Discover A11yEase', description: 'Explore practical tools for the way you browse, read and interact.', detail: 'Start with the interactive sample. There is no account or installation needed to try this website’s demo.' },
     { icon: SlidersHorizontal, title: 'Choose Your Preferences', description: 'Make small adjustments. Find a combination that feels like you.', detail: 'Choose a theme, adjust text and spacing, or try a reading guide. Controls have descriptive labels and work with a keyboard.' },
     { icon: CircleCheck, title: 'Enjoy a More Comfortable Experience', description: 'Keep the choices that suit you. Adjust again whenever you need.', detail: 'Compare the sample, adjust again when needed and reset with one button. Preferences affect the preview only. You may explicitly save them in this browser from the Personalization sample.' },
   ];

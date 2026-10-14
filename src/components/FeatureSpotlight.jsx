@@ -19,7 +19,7 @@ export default function FeatureSpotlight() {
       <div className="moment-options" role="group" aria-label="Choose an everyday feature example">{moments.map(item=><button type="button" key={item.id} onClick={()=>choose(item.id)} aria-pressed={selected === item.id}><span className="moment-icon"><item.icon size={21} aria-hidden="true"/></span><span><strong>{item.title}</strong><small>{item.summary}</small></span><ArrowUpRight size={18} aria-hidden="true"/></button>)}</div>
     </div>
     <div className="spotlight-stage reveal">
-      <div className="spotlight-browser"><div className="spotlight-chrome"><span><i/><i/><i/></span><small>AccesseEase · a contained example</small></div>
+      <div className="spotlight-browser"><div className="spotlight-chrome"><span><i/><i/><i/></span><small>A11yEase · a contained example</small></div>
         <div className={`moment-preview ${adjusted ? `moment-preview--${moment.id}` : ''}`}>
           <div className="moment-preview-top"><span>EVERYDAY NOTES</span><span>{adjusted ? 'Personal view' : 'Default view'}</span></div>
           <h3>Make room for<br/>what matters.</h3><p>A comfortable reading space starts with your preferences. Take a moment to compare the words, the space between lines and the links that guide you through a story.</p>

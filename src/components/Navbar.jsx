@@ -21,11 +21,11 @@ export default function Navbar() {
   }, [open]);
   return <header ref={header} className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
     <div className="container nav-shell">
-      <Link to="/" className="brand-link" aria-label="AccesseEase home"><Brand /></Link>
+      <Link to="/" className="brand-link" aria-label="A11yEase home"><Brand /></Link>
       <button ref={toggle} className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="primary-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'}>{open ? <X /> : <Menu />}</button>
       <nav id="primary-navigation" aria-label="Main navigation" className={open ? 'nav-open' : ''}>
         <div className="nav-links">{navigation.map(([label, url]) => <NavLink key={url} to={url} end={url === '/'}>{label}</NavLink>)}</div>
-        <Button to="/#demo" className="nav-cta">Get Started</Button>
+        <Button to="/features#feature-workbench" className="nav-cta">Get Started</Button>
       </nav>
     </div>
   </header>;
