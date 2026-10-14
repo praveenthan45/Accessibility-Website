@@ -8,5 +8,4 @@ import './styles/responsive.css';
 import './styles/catalog.css';
 import './styles/branding.css';
 import './styles/polish.css';
-import './styles/workbench.css';
 ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode><BrowserRouter><App/></BrowserRouter></React.StrictMode>);

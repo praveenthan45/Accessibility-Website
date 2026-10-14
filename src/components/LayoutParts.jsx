@@ -8,7 +8,7 @@ export function PageHero({ eyebrow, title, accent, description, children }) { re
 export function ConversionCTA({ title = 'A More Accessible Digital Experience Starts Here.', description = 'Discover accessibility controls designed around your preferences.', contact = false }) {
   const { pathname } = useLocation();
   const variant = ({ '/features':'compare', '/how-it-works':'workflow', '/about':'mission', '/faq':'support' })[pathname] || 'reading';
-  return <section className={`conversion conversion--${variant}`}><div className="container conversion-inner"><div><Eyebrow light>YOUR DIGITAL WORLD. YOUR WAY.</Eyebrow><h2>{title}</h2><p>{description}</p><div className="button-row"><Button to={contact ? '/contact' : '/features#feature-workbench'} variant="white">{contact ? 'Contact Our Team' : 'Get Started'}</Button>{!contact && <Button to="/contact" variant="dark-outline">Contact Our Team</Button>}</div></div><ConversionVisual variant={variant}/></div></section>;
+  return <section className={`conversion conversion--${variant}`}><div className="container conversion-inner"><div><Eyebrow light>YOUR DIGITAL WORLD. YOUR WAY.</Eyebrow><h2>{title}</h2><p>{description}</p><div className="button-row"><Button to={contact ? '/contact' : '/#demo'} variant="white">{contact ? 'Contact Our Team' : 'Get Started'}</Button>{!contact && <Button to="/contact" variant="dark-outline">Contact Our Team</Button>}</div></div><ConversionVisual variant={variant}/></div></section>;
 }
 export function Steps({ detailed = false }) {
   const steps = [
