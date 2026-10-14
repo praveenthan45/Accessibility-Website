@@ -3,7 +3,7 @@ import { Minus, Plus, Moon, Sun, Contrast, AlignHorizontalSpaceAround, Link2, Sc
 import CategorySamples from './CategorySamples';
 import LogoMark from './LogoMark';
 import { defaultSettings as defaults, preferenceKey, legacyPreferenceKey, readPreferences } from '../data/demoSettings';
-export default function AccessibilityDemo({ category }) {
+export default function AccessibilityDemo({ category, showCategorySamples = true }) {
   const [settings, setSettings] = useState(readPreferences);
   const [preferenceStatus,setPreferenceStatus]=useState('');const preview=useRef(null);const sizeControl=useRef(null);
   const [more, setMore] = useState(false); const [announcement, setAnnouncement] = useState(''); const id = useId();
@@ -42,7 +42,7 @@ export default function AccessibilityDemo({ category }) {
       </div>
     </div>
     <p className="demo-note">An interactive illustration of selected features. Changes affect this sample only; compatibility with every website or device is not guaranteed.</p>
-    <CategorySamples requestedCategory={category} settings={settings} update={update} onApplyProfile={(values,label)=>{setSettings({...values});setAnnouncement(`${label} profile applied to the main sample.`);setPreferenceStatus(`${label} applied. Choose Save preferences to keep this combination.`);}} onSave={savePreferences} onReset={resetPreferences} preferenceStatus={preferenceStatus} onExploreVisual={()=>{preview.current?.scrollIntoView({behavior:'instant',block:'start'});sizeControl.current?.focus({preventScroll:true});}}/>
+    {showCategorySamples && <CategorySamples requestedCategory={category} settings={settings} update={update} onApplyProfile={(values,label)=>{setSettings({...values});setAnnouncement(`${label} profile applied to the main sample.`);setPreferenceStatus(`${label} applied. Choose Save preferences to keep this combination.`);}} onSave={savePreferences} onReset={resetPreferences} preferenceStatus={preferenceStatus} onExploreVisual={()=>{preview.current?.scrollIntoView({behavior:'instant',block:'start'});sizeControl.current?.focus({preventScroll:true});}}/>}
     <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcement}</span>
   </div>;
 }
