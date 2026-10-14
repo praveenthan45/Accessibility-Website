@@ -13,3 +13,6 @@
 .mini-footer,.browser-chrome small,.challenge-top>span,.step-number,.demo-browser-bar{color:#526176}.challenge h4{color:#087467}.visual-type-demo>span{color:#5275ab}.error-404{color:#2457c5}
 
 .not-found>.error-404{color:#2457c5}.text-visual>span:first-child,.text-visual>span:nth-child(2){opacity:1}
+
+/* Reflow combined large text, zoom and reading-font preferences. */
+.sample-article{overflow-wrap:anywhere}.sample-nav{overflow-wrap:anywhere}
