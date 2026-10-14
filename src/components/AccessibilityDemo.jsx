@@ -1,6 +1,7 @@
 import { useId, useRef, useState } from 'react';
-import { Accessibility, Minus, Plus, Moon, Sun, Contrast, AlignHorizontalSpaceAround, Link2, ScanLine, Rows3, RotateCcw, ChevronDown, Palette, Type, ZoomIn, Eye, ArrowUpRight, Check } from 'lucide-react';
+import { Minus, Plus, Moon, Sun, Contrast, AlignHorizontalSpaceAround, Link2, ScanLine, Rows3, RotateCcw, ChevronDown, Palette, Type, ZoomIn, Eye, ArrowUpRight, Check } from 'lucide-react';
 import CategorySamples from './CategorySamples';
+import LogoMark from './LogoMark';
 import { defaultSettings as defaults, preferenceKey, readPreferences } from '../data/demoSettings';
 export default function AccessibilityDemo({ category }) {
   const [settings, setSettings] = useState(readPreferences);
@@ -25,7 +26,7 @@ export default function AccessibilityDemo({ category }) {
           {settings.guide && <div className="reading-guide-overlay" aria-hidden="true"><span/></div>}
         </div>
         <aside className="demo-panel" aria-label="Sample accessibility settings">
-          <div className="demo-panel-heading"><span className="panel-logo"><Accessibility size={22} aria-hidden="true"/></span><div><h3>Make it yours.</h3><p>Small changes. Your comfort.</p></div></div>
+          <div className="demo-panel-heading"><span className="panel-logo panel-brand-logo"><LogoMark/></span><div><h3>Make it yours.</h3><p>Small changes. Your comfort.</p></div></div>
           <div className="demo-text-label"><label htmlFor={`${id}-size`}>Text size</label><output htmlFor={`${id}-size`}>{settings.textSize}%</output></div>
           <div className="demo-size-controls"><button aria-label="Decrease text size" disabled={settings.textSize <= 80} onClick={() => update('textSize', settings.textSize - 10, 'Text size')}><Minus size={17} aria-hidden="true"/></button><input ref={sizeControl} id={`${id}-size`} type="range" min="80" max="150" step="10" value={settings.textSize} onChange={e => update('textSize', Number(e.target.value), 'Text size')} aria-valuetext={`${settings.textSize} percent`}/><button aria-label="Increase text size" disabled={settings.textSize >= 150} onClick={() => update('textSize', settings.textSize + 10, 'Text size')}><Plus size={17} aria-hidden="true"/></button></div>
           <p className="control-label">A view that feels right</p>
@@ -36,7 +37,7 @@ export default function AccessibilityDemo({ category }) {
           <button className="more-settings" aria-expanded={more} aria-controls={`${id}-more`} onClick={() => setMore(!more)}>More settings <ChevronDown size={16} className={more ? 'rotate' : ''} aria-hidden="true"/></button>
           <div id={`${id}-more`} hidden={!more} className="demo-controls advanced-controls">{control(Palette, 'Grayscale', 'grayscale')}{control(Type, 'Dyslexia-friendly font', 'font')}{control(ZoomIn, 'Magnifier / Zoom', 'zoom')}{control(Eye, 'Color vision cues', 'colorCues')}</div>
           <button className="demo-reset" onClick={resetPreferences}><RotateCcw size={15} aria-hidden="true"/> Reset Settings</button>
-          <p className="demo-panel-footer"><Accessibility size={12} aria-hidden="true"/> Powered by AccesseEase</p>
+          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/> Powered by AccesseEase</p>
         </aside>
       </div>
     </div>
