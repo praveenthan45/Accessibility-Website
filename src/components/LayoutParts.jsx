@@ -4,7 +4,11 @@ import Button from './Button';
 import ConversionVisual from './ConversionVisual';
 export function Eyebrow({ children, light = false }) { return <p className={`eyebrow ${light ? 'eyebrow-light' : ''}`}><span aria-hidden="true" />{children}</p>; }
 export function SectionHead({ eyebrow, title, description, center = false, children }) { return <div className={`section-head ${center ? 'centered' : ''}`}><div>{eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}<h2>{title}</h2>{description && <p className="section-description">{description}</p>}</div>{children}</div>; }
-export function PageHero({ eyebrow, title, accent, description, children }) { return <section className="page-hero"><div className="container"><Eyebrow>{eyebrow}</Eyebrow><h1>{title}{accent && <><br/><span>{accent}</span></>}</h1><p>{description}</p>{children}</div><div className="page-orbit" aria-hidden="true"/></section>; }
+export function PageHero({ eyebrow, title, accent, description, children, image, wideChildren = false }) {
+  const copy = <><Eyebrow>{eyebrow}</Eyebrow><h1>{title}{accent && <><br/><span>{accent}</span></>}</h1><p>{description}</p>{(!image || !wideChildren) && children}</>;
+  if (!image) return <section className="page-hero"><div className="container">{copy}</div><div className="page-orbit" aria-hidden="true"/></section>;
+  return <section className="page-hero page-hero-with-image"><div className="container"><div className="page-hero-image-grid"><div className="page-hero-copy">{copy}</div><figure className="page-hero-photo"><img src={image.src} srcSet={`${image.small} 600w, ${image.src} 1200w`} sizes="(max-width: 600px) calc(100vw - 36px), (max-width: 959px) 580px, (max-width: 1199px) 40vw, 510px" alt={image.alt} width={image.width} height={image.height} fetchPriority="high" decoding="async" style={{objectPosition:image.position}}/><figcaption><span className="page-hero-photo-icon"><image.icon size={22} aria-hidden="true"/></span><span><span className="page-hero-photo-label">{image.label}</span><strong>{image.caption}</strong></span></figcaption></figure></div>{wideChildren && <div className="page-hero-wide-content">{children}</div>}</div></section>;
+}
 export function ConversionCTA({ title = 'A More Accessible Digital Experience Starts Here.', description = 'Discover accessibility controls designed around your preferences.', contact = false }) {
   const { pathname } = useLocation();
   const variant = ({ '/features':'compare', '/how-it-works':'workflow', '/about':'mission', '/faq':'support' })[pathname] || 'reading';

@@ -33,3 +33,13 @@ React, React DOM, React Router, Lucide React and Vite are open-source dependenci
 The unmodified user reference is preserved in `public/images/logo-original.png`. The transparent master is `assets/brand/accessease-logo.png`. The production mark is `public/images/accessease-logo.webp`, with matching `public/favicon.png` and `public/favicon.ico` assets. The built-in ImageGen tool prepared a transparent version from the supplied reference. Format conversion and downscaling produce the optimized website assets.
 
 ImageGen prompt: Remove only the flat pale gray background from the supplied A11yEase logo, trim excess margins, and center the isolated mark on a square transparent canvas. Preserve the blue capital A, diagonal orbit ribbon, four-point sparkle, proportions, gradients, highlights and layer ordering. Do not reinterpret or redesign it, and do not add text, symbols, shadows, containers or borders. Use sharp edges suitable for navbar and favicon use.
+
+## Distinct page hero photography
+
+These stock photographs illustrate accessibility contexts; they are not company employees, customers, endorsements or product-compatibility claims. Each source is used in only one page hero. The `-small.webp` files are downscaled versions for responsive loading.
+
+- `features-braille.webp`: Sigmund / Unsplash, person using a Braille display beside a keyboard. https://unsplash.com/photos/person-using-braille-writer-4MoIpDcSlr4 — https://images.unsplash.com/photo-1574887427561-d3d5d58c9273
+- `how-reading.webp`: Anna Shvets / Pexels, photo 5257246, an older adult with glasses using a laptop. https://www.pexels.com/photo/an-elderly-woman-using-a-laptop-5257246/ — https://images.pexels.com/photos/5257246/pexels-photo-5257246.jpeg
+- `contact-signing.webp`: cottonbro studio / Pexels, photo 6321244, sign-language communication during a laptop video call. https://www.pexels.com/photo/woman-in-gray-sweater-sitting-by-the-table-doing-hand-sign-while-having-video-chat-6321244/ — https://images.pexels.com/photos/6321244/pexels-photo-6321244.jpeg
+
+Provider license references: https://unsplash.com/license and https://www.pexels.com/license/.
