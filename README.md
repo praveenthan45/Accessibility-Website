@@ -85,3 +85,11 @@ The Features page includes search, category filtering, all listed settings and c
 Choose Save preferences explicitly to store the main sample settings under `accessease-demo-preferences-v1` in local storage. Stored values are allowlisted and validated when loaded. Separate category examples do not persist. Reset removes the saved main-panel preferences. Privacy and FAQ copy describe this behavior.
 
 Run `npm run verify:categories` with the local preview running to verify catalog reconciliation, search/filter behavior, all nine category samples, saved preferences, modal keyboard behavior, responsive layouts and automated accessibility checks. Speech wiring is tested with an injected browser speech fixture; available operating-system voices still require environment-specific testing.
+
+## Feature stories and motion checks
+
+All 52 catalog settings have authored context examples in `src/data/featureExamples.js`. Integration and compatibility review entries describe what still needs verification. The home page adds three interactive feature stories with a default/adjusted comparison. Five page-specific CTA compositions use native HTML/CSS instead of repeated decorative imagery.
+
+Card entrances run once as they enter view; hover movement is limited to fine pointers. Focused content appears immediately, and system reduced-motion preferences suppress these effects, including when changed during a visit.
+
+With the dev server running, `npm run verify:polish` checks the new comparisons, keyboard paths, focus visibility, reduced motion, dynamically inserted search cards and CTA reflow. Set `QA_BASE_URL` when the server uses a port other than 5173.

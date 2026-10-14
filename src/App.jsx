@@ -29,10 +29,46 @@ function RouteEffects() {
     previous.current = pathname; first.current = false;
   }, [pathname, hash]);
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.remove('reveal-pending'); observer.unobserve(entry.target); } }), { threshold: 0.08 });
-    const elements = document.querySelectorAll('.reveal'); elements.forEach(el => { el.classList.add('reveal-pending'); observer.observe(el); });
-    return () => { observer.disconnect(); elements.forEach(el => el.classList.remove('reveal-pending')); };
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const main = document.getElementById('main-content');
+    if (!main || !('IntersectionObserver' in window)) return;
+    const elements = new Set();
+    const show = (element, animate = true) => {
+      element.classList.remove('reveal-pending');
+      if (animate && !media.matches) element.classList.add('reveal-ready');
+      else element.classList.remove('reveal-ready');
+      observer.unobserve(element);
+    };
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) show(entry.target);
+    }), { threshold: 0.08 });
+    const observe = element => {
+      if (elements.has(element)) return;
+      elements.add(element);
+      if (!media.matches && !element.contains(document.activeElement)) {
+        element.classList.add('reveal-pending'); observer.observe(element);
+      }
+    };
+    main.querySelectorAll('.reveal').forEach(observe);
+    // Search results can insert new cards without changing the route.
+    const mutations = new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType !== 1) return;
+      if (node.matches('.reveal')) observe(node);
+      node.querySelectorAll('.reveal').forEach(observe);
+    })));
+    mutations.observe(main, { childList:true, subtree:true });
+    const revealFocused = event => {
+      let element = event.target.closest('.reveal');
+      while (element) { show(element, false); element = element.parentElement?.closest('.reveal'); }
+    };
+    const motionChanged = () => { if (media.matches) elements.forEach(element => show(element, false)); };
+    main.addEventListener('focusin', revealFocused);
+    media.addEventListener('change', motionChanged);
+    return () => {
+      observer.disconnect(); mutations.disconnect();
+      main.removeEventListener('focusin', revealFocused); media.removeEventListener('change', motionChanged);
+      elements.forEach(element => element.classList.remove('reveal-pending', 'reveal-ready'));
+    };
   }, [pathname]);
   return null;
 }
