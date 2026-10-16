@@ -9,7 +9,9 @@
     "preview": "vite preview --host 127.0.0.1",
     "verify": "node scripts/verify.mjs",
     "verify:categories": "node scripts/verify-categories.mjs",
-    "verify:polish": "node scripts/verify-polish.mjs"
+    "verify:polish": "node scripts/verify-polish.mjs",
+    "test:contact": "node --test scripts/test-contact-service.mjs",
+    "verify:contact": "node scripts/verify-contact.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.548.0",
