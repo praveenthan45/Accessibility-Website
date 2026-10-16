@@ -5,19 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-hosted-worker.mjs",
+    "start": "node server/index.mjs",
+    "build:email": "node scripts/build-email-script.mjs",
+    "test:email": "node --test scripts/test-email.mjs",
+    "verify:email": "node scripts/verify-email.mjs",
+    "test:contact": "node --test scripts/test-contact-service.mjs",
+    "verify:contact": "node scripts/verify-contact.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "verify": "node scripts/verify.mjs",
     "verify:categories": "node scripts/verify-categories.mjs",
-    "verify:polish": "node scripts/verify-polish.mjs",
-    "test:contact": "node --test scripts/test-contact-service.mjs",
-    "verify:contact": "node scripts/verify-contact.mjs"
+    "verify:polish": "node scripts/verify-polish.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.548.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.4"
+    "react-router-dom": "^7.9.4",
+    "serve": "14.2.6",
+    "serve-handler": "6.1.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
