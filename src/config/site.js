@@ -1,7 +1,7 @@
 import { features } from '../data/features';
 export const site = {
   name: 'A11yEase',
-  contactEndpoint: import.meta.env.VITE_CONTACT_API_URL?.trim() || 'https://formsubmit.co/ajax/gen.praveenthan@gmail.com',
+  contactEndpoint: import.meta.env.VITE_CONTACT_API_URL?.trim() || '/api/contact',
   supportEmail: import.meta.env.VITE_SUPPORT_EMAIL?.trim() || 'gen.praveenthan@gmail.com',
   url: import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') || '',
   socials: [],

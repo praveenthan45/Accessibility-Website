@@ -2,6 +2,8 @@
 
 A complete React marketing website with eight routes, a branded 404, an isolated interactive accessibility demo and a reusable configurable contact form.
 
+This hosted Sites copy uses the server-side `/api/contact` integration with Google Apps Script for branded inquiry notifications and visitor thank-you emails. Its private mail token is stored in the Sites runtime and Google Script Properties, never in this repository. The GitHub/Render copy retains FormSubmit until its own server environment is configured; follow `docs/CONTACT_EMAIL_SETUP.md` when enabling that deployment.
+
 ## Run locally
 
 Requires Node.js 20.19+ or 22.12+ (Node 24 also works).
@@ -49,10 +51,10 @@ A Render **Static Site** can also serve this frontend. Use the same build comman
 
 ## Configuration
 
-The default contact setup forwards through FormSubmit to `gen.praveenthan@gmail.com`; no frontend secrets or extra environment variables are needed. The receiving mailbox must activate its FormSubmit verification email before delivery works. Copy `.env.example` to `.env.local` only to override public build-time values:
+This Sites copy defaults to `/api/contact`, which sends through the configured Google Apps Script endpoint to `gen.praveenthan@gmail.com` and acknowledges the visitor. Runtime `CONTACT_SCRIPT_URL`, secret `CONTACT_SCRIPT_TOKEN`, and `CONTACT_ALLOWED_ORIGINS` are required. Copy `.env.example` to `.env.local` only to override public build-time values:
 
 ```dotenv
-VITE_CONTACT_API_URL=https://formsubmit.co/ajax/gen.praveenthan@gmail.com
+VITE_CONTACT_API_URL=/api/contact
 VITE_SUPPORT_EMAIL=gen.praveenthan@gmail.com
 VITE_SITE_URL=https://your-real-site-origin
 ```
