@@ -9,8 +9,8 @@ This hosted Sites copy uses the server-side `/api/contact` integration with Goog
 Requires Node.js 20.19+ or 22.12+ (Node 24 also works).
 
 ```sh
-git clone https://github.com/praveenthan45/A11yEase.git
-cd A11yEase
+git clone https://github.com/praveenthan45/Accessibility-Website.git
+cd Accessibility-Website
 npm install
 npm run dev
 ```

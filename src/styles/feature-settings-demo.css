@@ -11,6 +11,12 @@
 .feature-settings-demo .feature-demo-control-copy { flex:1; min-width:0; }
 .feature-settings-demo .feature-demo-control-copy strong { display:block; font-size:.74rem; font-weight:700; line-height:1.5; }
 .feature-settings-demo .feature-demo-control-copy small { display:block; color:#526176; font-size:.67rem; font-weight:400; line-height:1.6; margin-top:4px; }
+.feature-settings-demo .feature-demo-color-settings { min-width:0; padding:12px 10px; border:1px solid #dce5f3; border-radius:6px; background:#fff; }
+.feature-settings-demo .feature-demo-color-settings.selected { border-color:#2457c5; background:#f4f7ff; }
+.feature-settings-demo .feature-demo-color-settings label { display:flex; align-items:center; gap:9px; font-size:.74rem; font-weight:700; line-height:1.5; color:#344760; }
+.feature-settings-demo .feature-demo-color-settings label svg { flex-shrink:0; }
+.feature-settings-demo .feature-demo-color-settings select { width:100%; min-width:0; min-height:44px; margin-top:10px; padding:9px 10px; border:1px solid #c5d2e5; border-radius:6px; background:#fff; color:#243c60; font-size:.75rem; }
+.feature-settings-demo .feature-demo-color-settings small { display:block; margin-top:6px; color:#526176; font-size:.67rem; line-height:1.6; }
 .feature-settings-demo .demo-reset { margin-top:19px; min-height:44px; font-size:.73rem; }
 .feature-settings-demo .feature-demo-scroll { height:100%; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#b7c4b2 transparent; }
 .feature-settings-demo .feature-demo-scroll:focus-visible { outline-offset:-5px; }
@@ -38,7 +44,24 @@
 .feature-settings-demo .feature-demo-related>p { font-size:.8rem; margin-top:8px; }
 .feature-settings-demo .has-paragraph-highlighting .feature-demo-article p { padding:12px 14px; border:2px solid #698153; border-radius:6px; background:#eef2d9; color:#263c2a; }
 .feature-settings-demo .has-paragraph-highlighting .feature-demo-article .feature-demo-kicker { border:0; padding:0; background:transparent; }
-.feature-settings-demo .is-distraction-free .feature-demo-secondary { display:none; }
+.feature-settings-demo .has-color-cues { background:var(--vision-background); color:var(--vision-text); }
+.feature-settings-demo .has-color-cues .feature-demo-scroll { scrollbar-color:var(--vision-accent) var(--vision-background); }
+.feature-settings-demo .has-color-cues .feature-demo-scroll:focus-visible { outline-color:var(--vision-accent); }
+.feature-settings-demo .has-color-cues .feature-demo-nav { border-color:var(--vision-accent); }
+.feature-settings-demo .has-color-cues .feature-demo-brand>span { color:var(--vision-accent); }
+.feature-settings-demo .has-color-cues .feature-demo-target { border:2px solid var(--vision-accent); background:var(--vision-surface); color:var(--vision-accent); text-decoration:underline; text-underline-offset:3px; }
+.feature-settings-demo .has-color-cues .feature-demo-target:hover { background:var(--vision-accent-soft); }
+.feature-settings-demo .has-color-cues .feature-demo-target:focus-visible { outline-color:var(--vision-accent); }
+.feature-settings-demo .has-color-cues .feature-demo-target[aria-pressed=true],
+.feature-settings-demo .has-color-cues .feature-demo-target[aria-expanded=true] { border-style:dashed; border-color:var(--vision-highlight-border); background:var(--vision-highlight); color:var(--vision-text); }
+.feature-settings-demo .has-color-cues .feature-demo-article p,
+.feature-settings-demo .has-color-cues .feature-demo-article .feature-demo-kicker,
+.feature-settings-demo .has-color-cues .feature-demo-related>span { color:var(--vision-muted); }
+.feature-settings-demo .has-color-cues .feature-demo-tip,
+.feature-settings-demo .has-color-cues .feature-demo-related { border:2px dashed var(--vision-highlight-border); background:var(--vision-highlight); color:var(--vision-text); }
+.feature-settings-demo .has-color-cues.has-paragraph-highlighting .feature-demo-article p:not(.feature-demo-kicker) { border-color:var(--vision-accent); background:var(--vision-accent-soft); color:var(--vision-text); }
+.feature-settings-demo .has-color-cues ::selection { background:var(--vision-accent); color:var(--vision-surface); }
+.feature-settings-demo [data-color-vision=monochrome] .feature-demo-photo { filter:grayscale(1); }
 .feature-settings-demo .has-reading-font .feature-demo-article { font-family:OpenDyslexic,sans-serif; }
 .feature-settings-demo .has-reading-font .feature-demo-article h3 { font-size:2rem; letter-spacing:0; line-height:1.5; }
 

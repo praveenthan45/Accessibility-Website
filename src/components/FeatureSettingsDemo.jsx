@@ -1,14 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { AlignLeft, ArrowUpRight, Bookmark, Brain, Check, Volume2, Highlighter, Lightbulb, Type, RotateCcw } from 'lucide-react';
+import { AlignLeft, ArrowUpRight, Bookmark, Eye, Check, Volume2, Highlighter, Lightbulb, Type, RotateCcw } from 'lucide-react';
 import LogoMark from './LogoMark';
 import { createSelectionSpeech } from '../lib/selectionSpeech';
+import { colorVisionProfiles, getColorVisionProfile } from '../data/colorVisionProfiles';
 import '../styles/feature-settings-demo.css';
 
-const defaults = { alignment: 'left', speech: false, paragraphs: false, distractionFree: false, font: false };
+const defaults = { alignment: 'left', speech: false, paragraphs: false, colorVision: 'default', font: false };
 const controls = [
   { key: 'speech', label: 'Text-to-Speech', hint: 'Turn on, then select text in the demo story to hear it.', icon: Volume2 },
   { key: 'paragraphs', label: 'Paragraph Highlighting', hint: 'Give each paragraph a clear boundary.', icon: Highlighter },
-  { key: 'distractionFree', label: 'Distraction-Free Mode', hint: 'Hide imagery and secondary content.', icon: Brain },
   { key: 'font', label: 'Dyslexia-Friendly Font', hint: 'Compare OpenDyslexic in the sample story.', icon: Type },
 ];
 
@@ -77,21 +77,24 @@ export default function FeatureSettingsDemo() {
     setSettings({ ...defaults });
     setAnnouncement('All five feature demo settings reset to defaults.');
   };
-  const activeCount = Number(settings.alignment !== 'left') + controls.filter(control => settings[control.key]).length;
-  const previewClass = ['demo-preview', 'feature-demo-preview', settings.paragraphs && 'has-paragraph-highlighting', settings.distractionFree && 'is-distraction-free', settings.font && 'has-reading-font'].filter(Boolean).join(' ');
+  const colorProfile = getColorVisionProfile(settings.colorVision);
+  const hasColorSupport = colorProfile.value !== 'default';
+  const activeCount = Number(settings.alignment !== 'left') + Number(hasColorSupport) + controls.filter(control => settings[control.key]).length;
+  const previewClass = ['demo-preview', 'feature-demo-preview', settings.paragraphs && 'has-paragraph-highlighting', hasColorSupport && 'has-color-cues', settings.font && 'has-reading-font'].filter(Boolean).join(' ');
+  const renderControl = ({ key, label, hint, icon: Icon }) => <button key={key} className={`demo-control ${settings[key] ? 'selected' : ''}`} type="button" aria-label={label} aria-describedby={`${id}-${key}-hint`} aria-pressed={settings[key]} disabled={key === 'speech' && !speechSupported} onClick={() => key === 'speech' ? toggleSpeech() : update(key, !settings[key], label)}><Icon size={18} aria-hidden="true"/><span className="feature-demo-control-copy"><strong>{label}</strong><small id={`${id}-${key}-hint`}>{key === 'speech' ? (!speechSupported ? 'Text-to-Speech is not available in this browser.' : speechMessage || hint) : hint}</small></span><span className="toggle-switch" aria-hidden="true"><i/></span></button>;
 
   return <div className="demo-wrapper feature-settings-demo">
     <div className="demo-frame">
       <div className="demo-browser-bar"><span className="browser-dots" aria-hidden="true"><i/><i/><i/></span><span>fieldnotes.example / a calmer day</span><span className="demo-live"><span/> Live preview</span></div>
       <div className="demo-body">
-        <div className={previewClass}>
+        <div className={previewClass} data-color-vision={colorProfile.value} style={colorProfile.style}>
           <div className="feature-demo-scroll" ref={scrollArea} tabIndex={0} role="region" aria-label="Feature demo story. Scroll to read more.">
             <nav className="feature-demo-nav" aria-label="Sample story navigation">
               <span className="feature-demo-brand">fieldnotes<span>.</span></span>
-              <div className="feature-demo-secondary"><button className="feature-demo-target" type="button" onClick={() => moveTo(story)}>Story</button><button className="feature-demo-target" type="button" onClick={() => moveTo(ideas)}>Ideas <ArrowUpRight size={14} aria-hidden="true"/></button></div>
+              <div><button className="feature-demo-target" type="button" onClick={() => moveTo(story)}>Story</button><button className="feature-demo-target" type="button" onClick={() => moveTo(ideas)}>Ideas <ArrowUpRight size={14} aria-hidden="true"/></button></div>
             </nav>
             <article ref={article} className="feature-demo-article" style={{ textAlign: settings.alignment }}>
-              <p className="feature-demo-kicker feature-demo-secondary">SMALL MOMENTS. A LITTLE MORE ROOM.</p>
+              <p className="feature-demo-kicker">{hasColorSupport ? 'CATEGORY: EVERYDAY REFLECTION' : 'SMALL MOMENTS. A LITTLE MORE ROOM.'}</p>
               <h3 ref={story} tabIndex={-1}>A calmer start<br/>to your day.</h3>
               <p className="feature-demo-intro">A comfortable day can begin with a little breathing room and one small, intentional choice.</p>
               <div className="feature-demo-actions">
@@ -99,11 +102,11 @@ export default function FeatureSettingsDemo() {
                 <button className="feature-demo-target" type="button" aria-expanded={showTip} aria-controls={`${id}-tip`} onClick={() => setShowTip(!showTip)}><Lightbulb size={16} aria-hidden="true"/>Reading tip</button>
               </div>
               <div id={`${id}-tip`} className="feature-demo-tip" hidden={!showTip}><strong>A small place to start</strong><p>Try one setting, read a paragraph, then combine the changes that feel comfortable.</p></div>
-              <img className="feature-demo-photo feature-demo-secondary" src="/images/workspace.webp" alt="A sunlit workspace with plants and a comfortable place to read" width="1200" height="800" loading="lazy"/>
+              <img className="feature-demo-photo" src="/images/workspace.webp" alt="A sunlit workspace with plants and a comfortable place to read" width="1200" height="800" loading="lazy"/>
               <h4 ref={ideas} tabIndex={-1}>Make space for one thing.</h4>
               <p>Before the day gathers momentum, find a comfortable corner and choose one thing you would like to give your attention to. The rest can wait for a moment.</p>
               <p>Move through a paragraph at your own pace. Pause, look away or return to a sentence whenever you need to. A useful reading rhythm is one that leaves room for you.</p>
-              <aside className="feature-demo-related feature-demo-secondary" aria-label="Related idea"><span>A NOTE FOR LATER</span><strong>Small steps can become familiar habits.</strong><p>Keep a little room in your day for the things you enjoy.</p></aside>
+              <aside className="feature-demo-related" aria-label="Related idea"><span>{hasColorSupport ? 'RELATED IDEA: A NOTE FOR LATER' : 'A NOTE FOR LATER'}</span><strong>Small steps can become familiar habits.</strong><p>Keep a little room in your day for the things you enjoy.</p></aside>
               <h4>A moment to reflect.</h4>
               <p>Notice which small change made this moment feel more comfortable. You can return to it tomorrow, or choose a different starting point.</p>
             </article>
@@ -116,7 +119,19 @@ export default function FeatureSettingsDemo() {
             <label htmlFor={`${id}-alignment`}><AlignLeft size={18} aria-hidden="true"/>Text Alignment</label>
             <select id={`${id}-alignment`} value={settings.alignment} onChange={event => update('alignment', event.target.value, 'Text Alignment')}><option value="left">Left aligned</option><option value="center">Center aligned</option><option value="right">Right aligned</option></select>
           </div>
-          <div className="demo-controls">{controls.map(({ key, label, hint, icon: Icon }) => <button key={key} className={`demo-control ${settings[key] ? 'selected' : ''}`} type="button" aria-label={label} aria-describedby={`${id}-${key}-hint`} aria-pressed={settings[key]} disabled={key === 'speech' && !speechSupported} onClick={() => key === 'speech' ? toggleSpeech() : update(key, !settings[key], label)}><Icon size={18} aria-hidden="true"/><span className="feature-demo-control-copy"><strong>{label}</strong><small id={`${id}-${key}-hint`}>{key === 'speech' ? (!speechSupported ? 'Text-to-Speech is not available in this browser.' : speechMessage || hint) : hint}</small></span><span className="toggle-switch" aria-hidden="true"><i/></span></button>)}</div>
+          <div className="demo-controls">
+            {controls.slice(0, 2).map(renderControl)}
+            <div className={`feature-demo-color-settings ${hasColorSupport ? 'selected' : ''}`}>
+              <label htmlFor={`${id}-color-vision`}><Eye size={18} aria-hidden="true"/>Color Blindness Support</label>
+              <select id={`${id}-color-vision`} value={colorProfile.value} aria-describedby={`${id}-color-vision-hint`} onChange={event => {
+                const nextProfile = getColorVisionProfile(event.target.value);
+                setSettings(current => ({ ...current, colorVision: nextProfile.value }));
+                setAnnouncement(`Color Blindness Support: ${nextProfile.label}.`);
+              }}>{colorVisionProfiles.map(profile => <option key={profile.value} value={profile.value}>{profile.label}</option>)}</select>
+              <small id={`${id}-color-vision-hint`}>{colorProfile.hint}</small>
+            </div>
+            {controls.slice(2).map(renderControl)}
+          </div>
           <button className="demo-reset" type="button" onClick={reset}><RotateCcw size={15} aria-hidden="true"/>Reset Settings</button>
           <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/>Powered by A11yEase</p>
         </aside>
