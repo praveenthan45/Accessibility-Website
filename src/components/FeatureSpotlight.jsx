@@ -6,7 +6,7 @@ import { Eyebrow } from './LayoutParts';
 const moments = [
   { id:'reading', icon:BookOpen, title:'Settle into a longer read', summary:'Text size, spacing and a reading guide', heading:'Give a paragraph room to breathe.', copy:'A crowded paragraph can take extra effort to follow. Try a larger reading size, open up the line spacing and use a guide to mark your place. Change one setting at a time to find a combination you prefer.', settings:['Larger text', 'More line spacing', 'Reading guide'], link:'/features#reading-guide', linkLabel:'Explore reading assistance' },
   { id:'navigation', icon:Link2, title:'Find your next step', summary:'Clearer links and visible keyboard focus', heading:'Make the path through content clearer.', copy:'A link should be easy to recognize before you select it. Compare an underlined link with a visible boundary, then use Tab to follow the focus ring on the working links in this preview.', settings:['Underlined links', 'Defined link boundaries', 'Visible focus'], link:'/features#highlight-links', linkLabel:'Explore navigation controls' },
-  { id:'preferences', icon:RotateCcw, title:'Start from a familiar view', summary:'Editable profiles, browser storage and reset', heading:'A starting point you can make your own.', copy:'In the main demo, a profile applies a useful combination of settings. Adjust it, explicitly save it in this browser if you wish, or reset to the defaults. The example here simply compares a profile with the original view.', settings:['Example profile', 'Individual adjustments', 'Reset in the main demo'], link:'/features#save-preferences', linkLabel:'Explore personalization' },
+  { id:'preferences', icon:RotateCcw, title:'Start from a familiar view', summary:'A profile illustration and adjustable demo controls', heading:'A starting point you can make your own.', copy:'This spotlight compares a fixed Reading focus illustration with the original view. In the main demo, adjust individual controls and use Reset Settings for a fresh start. The current demo has no profile selector or Save preferences control.', settings:['Profile illustration', 'Individual demo controls', 'Reset in the main demo'], link:'/features#accessibility-profiles', linkLabel:'Explore personalization' },
 ];
 
 export default function FeatureSpotlight() {
@@ -25,7 +25,7 @@ export default function FeatureSpotlight() {
           <h3>Make room for<br/>what matters.</h3><p>A comfortable reading space starts with your preferences. Take a moment to compare the words, the space between lines and the links that guide you through a story.</p>
           <div className="moment-guide" aria-hidden="true"/>
           <Link to="/features#highlight-links">Explore the next idea <ArrowUpRight size={15} aria-hidden="true"/></Link>
-          <Link to="/features#accessibility-profiles">Find a starting profile <ArrowUpRight size={15} aria-hidden="true"/></Link>
+          <Link to="/features#accessibility-profiles">About profile examples <ArrowUpRight size={15} aria-hidden="true"/></Link>
           {selected === 'preferences' && <div className="moment-profile"><Check size={16} aria-hidden="true"/><span>{adjusted ? 'Reading focus · profile example' : 'Original view · default settings'}</span></div>}
         </div>
         <div className="moment-compare-bar"><span role="status" aria-live="polite">{moment.title}: {adjusted ? 'adjusted example' : 'default example'}</span><button type="button" aria-pressed={!adjusted} onClick={()=>setAdjusted(!adjusted)}>{adjusted ? 'Show default view' : 'Show adjusted view'}</button></div>
