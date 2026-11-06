@@ -31,4 +31,4 @@ const server = createServer(async (request,response) => {
 });
 server.requestTimeout = 40000;
 server.headersTimeout = 15000;
-server.listen(Number(process.env.PORT || 3000),'0.0.0.0',() => console.log(`A11yEase server listening on port ${process.env.PORT || 3000}`));
+server.listen(Number(process.env.PORT || 3000),'0.0.0.0',() => console.log(`Pluga11y server listening on port ${process.env.PORT || 3000}`));

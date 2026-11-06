@@ -53,7 +53,7 @@ try {
   await expect(page.getByLabel('Full Name',{exact:false})).toHaveValue('Contact integration check');
   assert.equal(payloads[0]._replyto,'reader@example.test');
   assert.equal(payloads[0]._template,'table');
-  assert.equal(payloads[0]._subject,'A11yEase · Product Demo: Guided product demonstration');
+  assert.equal(payloads[0]._subject,'Pluga11y · Product Demo: Guided product demonstration');
   assert.equal(payloads[0].consent,true);
   assert.equal(payloads[0]._honey,'');
   await page.getByRole('button',{name:'Send Message',exact:true}).click();

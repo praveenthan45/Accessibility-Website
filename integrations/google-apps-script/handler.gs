@@ -41,7 +41,7 @@ function doPost(event) {
     if (MailApp.getRemainingDailyQuota() < 2) return output({ success:false, code:'quota' });
     cache.put(recipientKey, String(attempts + 1), 3600);
     var messages = buildContactEmails(contact);
-    var inlineImages = { a11yeaseLogo: Utilities.newBlob(Utilities.base64Decode(A11YEASE_LOGO_BASE64), 'image/png', 'a11yease-logo.png') };
+    var inlineImages = { pluga11yLogo: Utilities.newBlob(Utilities.base64Decode(PLUGA11Y_LOGO_BASE64), 'image/png', 'pluga11y-logo.png') };
     properties.setProperty(key, JSON.stringify({ at:now, ownerAccepted:false, confirmationAccepted:false }));
     try {
       MailApp.sendEmail(Object.assign({}, messages.owner, { inlineImages:inlineImages }));

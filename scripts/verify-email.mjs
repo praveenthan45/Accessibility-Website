@@ -9,7 +9,7 @@ try {
   for (const name of ['visitor','owner']) for (const width of [600,360]) {
     await page.setViewportSize({width,height:900});
     await page.goto(pathToFileURL(resolve(`qa/email/${name}.html`)).href);
-    const logo=page.getByAltText('A11yEase logo');
+    const logo=page.getByAltText('Pluga11y logo');
     assert.equal(await logo.evaluate(image=>image.complete && image.naturalWidth>0),true);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     await page.screenshot({path:`qa/email/${name}-${width}.png`,fullPage:true});
@@ -27,7 +27,7 @@ try {
     await page.getByLabel('Full Name').fill('Jamie Reader');
     await page.getByLabel('Email Address').fill('visitor@example.com');
     await page.getByLabel('Subject',{exact:false}).fill('A product demonstration');
-    await page.getByLabel('Message (required)',{exact:true}).fill('Please tell me about A11yEase and its features.');
+    await page.getByLabel('Message (required)',{exact:true}).fill('Please tell me about Pluga11y and its features.');
     await page.getByRole('checkbox').check();
     await page.clock.fastForward(3100);
   };

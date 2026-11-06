@@ -30,9 +30,7 @@ React, React DOM, React Router, Lucide React and Vite are open-source dependenci
 
 ## Supplied brand logo
 
-The unmodified user reference is preserved in `public/images/logo-original.png`. The transparent master is `assets/brand/accessease-logo.png`. The production mark is `public/images/accessease-logo.webp`, with matching `public/favicon.png` and `public/favicon.ico` assets. The built-in ImageGen tool prepared a transparent version from the supplied reference. Format conversion and downscaling produce the optimized website assets.
-
-ImageGen prompt: Remove only the flat pale gray background from the supplied A11yEase logo, trim excess margins, and center the isolated mark on a square transparent canvas. Preserve the blue capital A, diagonal orbit ribbon, four-point sparkle, proportions, gradients, highlights and layer ordering. Do not reinterpret or redesign it, and do not add text, symbols, shadows, containers or borders. Use sharp edges suitable for navbar and favicon use.
+The Pluga11y logo was redrawn as a transparent SVG from the user-supplied reference. The full logo is `public/images/pluga11y-logo.svg`, and `public/images/pluga11y-mark.svg` contains the speech-bubble mark used in the demos and browser tab. The PNG and ICO favicons, social preview, and inline contact email logo use the same artwork.
 
 ## Distinct page hero photography
 

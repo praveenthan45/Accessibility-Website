@@ -28,7 +28,7 @@ export function createContactPayload(values, durationMs, endpoint, requestId) {
   return {
     ...payload,
     name: payload.fullName,
-    _subject: `A11yEase · ${payload.inquiryType}: ${payload.subject}`.replace(/[\r\n]/g, ' '),
+    _subject: `Pluga11y · ${payload.inquiryType}: ${payload.subject}`.replace(/[\r\n]/g, ' '),
     _replyto: payload.email,
     _template: 'table',
     _honey: payload.website,

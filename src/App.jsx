@@ -15,10 +15,11 @@ import { metadata, site } from './config/site';
 function RouteEffects() {
   const { pathname, hash } = useLocation(); const first = useRef(true); const previous = useRef(pathname);
   useLayoutEffect(() => {
-    const [title, description] = metadata[pathname] || ['Page not found', 'Find your way back to A11yEase.'];
-    document.title = `${title} | A11yEase`;
+    const [title, description] = metadata[pathname] || ['Page not found', `Find your way back to ${site.name}.`];
+    const pageTitle = `${title} | ${site.name}`;
+    document.title = pageTitle;
     const setMeta = (selector, content) => document.querySelector(selector)?.setAttribute('content', content);
-    setMeta('meta[name="description"]', description); setMeta('meta[property="og:title"]', `${title} | A11yEase`); setMeta('meta[property="og:description"]', description);
+    setMeta('meta[name="description"]', description); setMeta('meta[property="og:title"]', pageTitle); setMeta('meta[property="og:description"]', description);
     if (site.url) {
       let canonical = document.querySelector('link[rel="canonical"]'); if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.append(canonical); } canonical.href = `${site.url}${pathname}`;
       let ogUrl = document.querySelector('meta[property="og:url"]'); if (!ogUrl) { ogUrl = document.createElement('meta'); ogUrl.setAttribute('property', 'og:url'); document.head.append(ogUrl); } ogUrl.content = `${site.url}${pathname}`;

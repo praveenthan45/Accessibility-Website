@@ -7,7 +7,7 @@ import { validateContact } from '../server/contact-validation.mjs';
 import { createContactApi } from '../server/contact-api.mjs';
 import { readContactResponse, createContactPayload } from '../src/lib/contactService.js';
 
-const contact = { fullName:'Jamie Reader', email:'visitor@example.com',organization:'Example',inquiryType:'Product Demo',subject:'A product demo',message:'Please tell me more about A11yEase.',consent:true,website:'',source:'a11yease-contact',formDurationMs:10000,requestId:'a11e0000-1234-4567-8123-123456789abc' };
+const contact = { fullName:'Jamie Reader', email:'visitor@example.com',organization:'Example',inquiryType:'Product Demo',subject:'A product demo',message:'Please tell me more about Pluga11y.',consent:true,website:'',source:'a11yease-contact',formDurationMs:10000,requestId:'a11e0000-1234-4567-8123-123456789abc' };
 const origin = 'https://a11yease.example';
 const token = 'test-only-not-a-production-secret-12345678';
 const env = { CONTACT_SCRIPT_URL:'https://script.google.com/macros/s/test-deployment/exec', CONTACT_SCRIPT_TOKEN:token,CONTACT_ALLOWED_ORIGINS:origin };
@@ -18,9 +18,9 @@ test('both emails have the real CID logo, brand, correct routing and text fallba
   assert.equal(owner.to,'gen.praveenthan@gmail.com'); assert.equal(owner.replyTo,contact.email);
   assert.equal(visitor.to,contact.email); assert.equal(visitor.replyTo,owner.to);
   for (const email of [owner,visitor]) {
-    assert.equal(email.name,'A11yEase'); assert.match(email.htmlBody,/src="cid:a11yeaseLogo"/);
-    assert.match(email.htmlBody,/alt="A11yEase logo"/); assert.match(email.htmlBody,/lang="en"/);
-    assert.match(email.subject,/A11yEase/); assert.ok(email.body.length > 100);
+    assert.equal(email.name,'Pluga11y'); assert.match(email.htmlBody,/src="cid:pluga11yLogo"/);
+    assert.match(email.htmlBody,/alt="Pluga11y logo"/); assert.match(email.htmlBody,/lang="en"/);
+    assert.match(email.subject,/Pluga11y/); assert.ok(email.body.length > 100);
     assert.doesNotMatch(email.htmlBody,/<script|https?:\/\//);
   }
   assert.match(visitor.body,/as soon as possible/);
@@ -93,8 +93,8 @@ test('actual generated Apps Script sends two branded emails and deduplicates ret
   const fixture=scriptFixture(); const result=fixture.submit();
   assert.equal(result.confirmationAccepted,true); assert.equal(fixture.sent.length,2);
   for (const mail of fixture.sent) {
-    assert.equal(mail.inlineImages.a11yeaseLogo.type,'image/png');
-    assert.equal(Buffer.from(mail.inlineImages.a11yeaseLogo.bytes).subarray(1,4).toString(),'PNG');
+    assert.equal(mail.inlineImages.pluga11yLogo.type,'image/png');
+    assert.equal(Buffer.from(mail.inlineImages.pluga11yLogo.bytes).subarray(1,4).toString(),'PNG');
   }
   assert.equal(fixture.submit().confirmationAccepted,true); assert.equal(fixture.sent.length,2);
   assert.equal(fixture.submit({...contact,requestId:'b11e0000-1234-4567-8123-123456789abc'},'wrong').code,'unauthorized');

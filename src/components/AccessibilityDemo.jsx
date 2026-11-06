@@ -34,7 +34,7 @@ export default function AccessibilityDemo() {
           <button className="more-settings" aria-expanded={more} aria-controls={`${id}-more`} onClick={() => setMore(!more)}>More settings <ChevronDown size={16} className={more ? 'rotate' : ''} aria-hidden="true"/></button>
           <div id={`${id}-more`} hidden={!more} className="demo-controls advanced-controls">{control(Palette, 'Grayscale', 'grayscale')}{control(Type, 'Dyslexia-friendly font', 'font')}{control(ZoomIn, 'Magnifier / Zoom', 'zoom')}{control(Eye, 'Color vision cues', 'colorCues')}</div>
           <button className="demo-reset" onClick={resetPreferences}><RotateCcw size={15} aria-hidden="true"/> Reset Settings</button>
-          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/> Powered by A11yEase</p>
+          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/> Powered by Pluga11y</p>
         </aside>
       </div>
     </div>

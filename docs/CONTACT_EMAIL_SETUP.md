@@ -1,16 +1,16 @@
-# Enable branded A11yEase contact emails
+# Enable branded Pluga11y contact emails
 
-The existing FormSubmit inbox forwarding remains the default until you enable this integration. FormSubmit's AJAX endpoint cannot send autoresponses. This integration replaces that forwarding with **two Google MailApp emails**: a branded inquiry notification to `gen.praveenthan@gmail.com`, and a branded acknowledgment to the visitor. Both contain the supplied A11yEase logo as an inline PNG and a plain-text fallback.
+The existing FormSubmit inbox forwarding remains the default until you enable this integration. FormSubmit's AJAX endpoint cannot send autoresponses. This integration replaces that forwarding with **two Google MailApp emails**: a branded inquiry notification to `gen.praveenthan@gmail.com`, and a branded acknowledgment to the visitor. Both contain the supplied Pluga11y logo as an inline PNG and a plain-text fallback.
 
-Visitor subject: **Thank you for contacting A11yEase**
+Visitor subject: **Thank you for contacting Pluga11y**
 
-Visitor message: “Welcome to A11yEase, and thank you for getting in touch! We have received your inquiry. Our team will review your message and get back to you as soon as possible.”
+Visitor message: “Welcome to Pluga11y, and thank you for getting in touch! We have received your inquiry. Our team will review your message and get back to you as soon as possible.”
 
 ## 1. Prepare the script
 
 Run `npm run build:email`. It generates `integrations/google-apps-script/Code.gs` from the validated email templates and the existing logo. It also writes local HTML previews in `qa/email/`; no email is sent. Do not edit the generated file independently.
 
-Sign into **gen.praveenthan@gmail.com** at [Google Apps Script](https://script.google.com/home/start). Create a new project named **A11yEase Contact Emails**. Replace the default `Code.gs` with the generated file from this repository. Enable **Show appsscript.json manifest file in editor** under Project Settings and replace that manifest with the supplied `appsscript.json`.
+Sign into **gen.praveenthan@gmail.com** at [Google Apps Script](https://script.google.com/home/start). Create a new project named **Pluga11y Contact Emails**. Replace the default `Code.gs` with the generated file from this repository. Enable **Show appsscript.json manifest file in editor** under Project Settings and replace that manifest with the supplied `appsscript.json`.
 
 ## 2. Configure a server-only shared token
 

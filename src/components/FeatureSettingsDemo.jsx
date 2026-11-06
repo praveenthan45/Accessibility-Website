@@ -133,7 +133,7 @@ export default function FeatureSettingsDemo() {
             {controls.slice(2).map(renderControl)}
           </div>
           <button className="demo-reset" type="button" onClick={reset}><RotateCcw size={15} aria-hidden="true"/>Reset Settings</button>
-          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/>Powered by A11yEase</p>
+          <p className="demo-panel-footer"><LogoMark className="demo-footer-logo"/>Powered by Pluga11y</p>
         </aside>
       </div>
     </div>

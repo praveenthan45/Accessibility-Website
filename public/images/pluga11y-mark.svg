@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="148 73 366 366" width="366" height="366">
+  <defs>
+    <linearGradient id="bubble" x1="0" y1=".4" x2="1" y2=".45">
+      <stop stop-color="#9638ed"/>
+      <stop offset=".55" stop-color="#414be5"/>
+      <stop offset="1" stop-color="#0875d6"/>
+    </linearGradient>
+    <linearGradient id="shade" x1=".48" y1="0" x2=".85" y2=".93">
+      <stop offset=".24" stop-color="#2321a7" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2321a7" stop-opacity=".65"/>
+    </linearGradient>
+    <path id="speech" d="M155 414l2-162c0-65 53-117 118-117h40c65 0 118 52 118 117 0 66-52 118-117 118h-63c-11 0-18 3-24 10l-42 47c-12 13-32 5-32-13z"/>
+  </defs>
+  <use href="#speech" fill="url(#bubble)"/>
+  <use href="#speech" fill="url(#shade)"/>
+  <g fill="#fff">
+    <circle cx="296" cy="194.5" r="24"/>
+    <path d="M295 230c18 0 66-9 79-11 14-3 16 14 4 18l-56 15c-2 26 5 47 15 77 4 11-10 17-17 8l-24-42-25 42c-6 9-20 3-16-8 12-33 24-52 21-77l-61-15c-13-3-9-21 4-18 16 2 61 11 76 11z"/>
+  </g>
+  <path d="m403 127 13-36m22 61 32-24m-14 60h39" fill="none" stroke="#08c9df" stroke-width="24" stroke-linecap="round"/>
+</svg>

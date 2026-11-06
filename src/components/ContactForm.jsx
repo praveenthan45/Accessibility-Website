@@ -38,7 +38,7 @@ export default function ContactForm() {
         return;
       }
       const message = result === 'accepted-with-confirmation'
-        ? 'Thank you for contacting A11yEase. Your inquiry and thank-you email were accepted for delivery. Please check your inbox or spam folder. Our team will respond as soon as possible.'
+        ? 'Thank you for contacting Pluga11y. Your inquiry and thank-you email were accepted for delivery. Please check your inbox or spam folder. Our team will respond as soon as possible.'
         : result === 'accepted-without-confirmation'
           ? 'Your inquiry was accepted, but we could not confirm the thank-you email. Our team will respond as soon as possible. You do not need to submit again.'
           : 'Your message was accepted for delivery. Thank you for reaching out.';

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { navigation } from '../config/site';
+import { navigation, site } from '../config/site';
 import Brand from './Brand';
 import Button from './Button';
 export default function Navbar() {
@@ -22,7 +22,7 @@ export default function Navbar() {
   }, [open]);
   return <header ref={header} className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
     <div className="container nav-shell">
-      <Link to="/" className="brand-link" aria-label="A11yEase home"><Brand /></Link>
+      <Link to="/" className="brand-link" aria-label={`${site.name} home`}><Brand /></Link>
       <button ref={toggle} className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="primary-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'}>{open ? <X /> : <Menu />}</button>
       <nav id="primary-navigation" aria-label="Main navigation" className={open ? 'nav-open' : ''}>
         <div className="nav-links">{visibleNavigation.map(([label, url]) => <NavLink key={url} to={url} end={url === '/'}>{label}</NavLink>)}</div>

@@ -10,7 +10,7 @@ test('FormSubmit receives all fields and the visitor reply address', () => {
   assert.equal(payload.name, 'Jamie Reader');
   assert.equal(payload.email, 'reader@example.com');
   assert.equal(payload._replyto, payload.email);
-  assert.equal(payload._subject, 'A11yEase · Product Demo: Product demo');
+  assert.equal(payload._subject, 'Pluga11y · Product Demo: Product demo');
   assert.equal(payload._template, 'table');
   assert.equal(payload._honey, '');
   assert.equal(payload.consent, true);
